@@ -33,10 +33,22 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     <classifier>javadoc</classifier>
     <scope>provided</scope>
   </dependency>
+  <!--h2 database-->
+  <dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <version>1.4.195</version>
+  </dependency>
+  <dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>RELEASE</version>
+    <scope>compile</scope>
+  </dependency>
 </dependencies>
 
 <build>
-  <finalName>java-ee-practice</finalName>
+  <finalName>PSK1</finalName>
   <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
     <plugins>
       <plugin>

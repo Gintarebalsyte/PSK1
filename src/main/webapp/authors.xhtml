@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>Authors:</h2>
+    <ol>
+        <ui:repeat value="#{authors.allAuthors}" var="author">
+            <li><h:link value="#{author.firstName} #{author.lastName}" outcome="books?authorId=#{author.id}"/></li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:panelGrid columns="3">
+            <h:outputLabel for="firstName">Enter first name:</h:outputLabel>
+            <h:inputText id="firstName" value="#{authors.authorToCreate.firstName}" required="true" maxlength="20"/>
+            <br/><br/>
+            <h:outputLabel for="lastName">Enter last name:</h:outputLabel>
+            <h:inputText id="lastName" value="#{authors.authorToCreate.lastName}" required="true" maxlength="20"/>
+            <br/><br/>
+            <h:commandButton value="Add new author" action="#{authors.createAuthor}"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>
