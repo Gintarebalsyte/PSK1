@@ -3,17 +3,15 @@ package lt.vu.psk1.persistance;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
-import lombok.Setter;
 import lt.vu.psk1.entities.Author;
 
 @ApplicationScoped
 public class AuthorDAO {
 
-    @Setter
-    @PersistenceContext
+    @Inject
     private EntityManager entityManager;
 
     public List<Author> loadAll() {
@@ -26,5 +24,9 @@ public class AuthorDAO {
 
     public Author findOne(Long id) {
         return entityManager.find(Author.class, id);
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 }

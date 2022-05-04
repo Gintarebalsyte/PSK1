@@ -23,25 +23,12 @@ public class LogInReader implements Serializable {
     @Setter
     private Account accountToLogin = new Account();
 
-    // @Getter
-    // private List<Account> allAccounts;
-
-    // @PostConstruct
-    // public void init() {
-    //     loadAccounts();
-    // }
-
-    // public void loadAccounts() {
-    //     this.allAccounts = accountDAO.loadAll();
-    // }
-
     @Transactional
     public String logInAccount() {
         Account attempt = accountDAO.findByUsernameAndPassword(this.accountToLogin.getUsername(), this.accountToLogin.getPassword());
 
         if (attempt != null) {
             return "index?faces-redirect=true";
-            // return "readerBooks?faces-redirect=true&readerId=" + attempt.getId();
         } else {
             return "index?faces-redirect=true";
         }

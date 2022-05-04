@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head/>
+<h:body>
+    <h2>People who have read #{bookReadersMB.book.title}:</h2>
+    <ol>
+        <ui:repeat value="#{bookReadersMB.book.readers}" var="reader">
+            <li>#{reader.username}</li>
+        </ui:repeat>
+    </ol>
+    <h:link outcome="/myBatis/readersAndBooks" value="Back to list"/>
+</h:body>
+</html>

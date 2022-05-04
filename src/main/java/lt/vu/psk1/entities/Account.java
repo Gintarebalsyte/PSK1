@@ -7,7 +7,6 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,11 +47,12 @@ public class Account implements Serializable {
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "books_reader",
-            joinColumns = @JoinColumn(name = "account_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
-    List<Book> bookList = new ArrayList<>();
+    @Column
+    @ManyToMany
+    @JoinTable(name = "BOOKS_READER",
+            joinColumns = @JoinColumn(name = "ACCOUNT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "BOOK_ID"))
+    List<Book> books = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

@@ -22,7 +22,8 @@ public class AuthorBooks implements Serializable {
     @Inject
     private AuthorDAO authorDAO;
 
-    @Inject BookDAO bookDAO;
+    @Inject
+    private BookDAO bookDAO;
 
     @Getter
     @Setter
