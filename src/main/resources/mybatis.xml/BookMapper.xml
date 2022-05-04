@@ -76,7 +76,7 @@
     FROM PUBLIC.BOOK b
     where b.title = #{title,jdbcType=VARCHAR}
   </select>
-  <select id="getResultCount" resultType="INTEGER">
+  <select id="getResultCountByBookTitle" resultType="INTEGER">
     SELECT count(ID)
     FROM PUBLIC.BOOK b
     WHERE b.title = #{title, jdbcType=VARCHAR}

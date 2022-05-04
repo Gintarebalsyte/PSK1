@@ -2,6 +2,7 @@ package lt.vu.psk1.mybatis.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.cdi.Mapper;
 
 import lt.vu.psk1.mybatis.model.BooksReader;
@@ -23,4 +24,6 @@ public interface BooksReaderMapper {
      * @mbg.generated Wed May 04 15:44:04 EEST 2022
      */
     List<BooksReader> selectAll();
+
+    int getResultCountByBookAndAccountId(@Param("bookId") Long bookId, @Param("accountId") Long accountId);
 }

@@ -50,5 +50,5 @@ public interface BookMapper {
 
     Book findByName(String name);
 
-    int getResultCount(String name);
+    int getResultCountByBookTitle(String name);
 }

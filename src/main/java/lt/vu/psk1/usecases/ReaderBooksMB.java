@@ -3,6 +3,7 @@ package lt.vu.psk1.usecases;
 import static javax.faces.context.FacesContext.getCurrentInstance;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -39,9 +40,23 @@ public class ReaderBooksMB implements Serializable {
     @Setter
     private Book bookToAdd = new Book();
 
+    @Getter
+    private List<Book> allExistingBooks;
+
     @Transactional
-    public String addBookForReader() {
-        if (bookMapper.getResultCount(bookToAdd.getTitle()) == 0) {
+    public String addBookForReader(Long bookId) {
+        if (booksReaderMapper.getResultCountByBookAndAccountId(bookId, this.account.getId()) == 0) {
+            BooksReader booksReader = new BooksReader();
+            booksReader.setBookId(bookId);
+            booksReader.setAccountId(this.account.getId());
+            booksReaderMapper.insert(booksReader);
+        }
+        return "/myBatis/readersAndBooks?faces-redirect=true";
+    }
+
+    @Transactional
+    public String addNewBookForReader() {
+        if (bookMapper.getResultCountByBookTitle(bookToAdd.getTitle()) == 0) {
             bookMapper.insert(bookToAdd);
         }
         Book addedBook = bookMapper.findByName(bookToAdd.getTitle());
@@ -60,5 +75,6 @@ public class ReaderBooksMB implements Serializable {
 
         Long readerId = Long.parseLong(requestParams.get("readerId"));
         this.account = accountMapper.selectByPrimaryKey(readerId);
+        this.allExistingBooks = this.bookMapper.selectAll();
     }
 }

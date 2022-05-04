@@ -28,4 +28,9 @@
     select ACCOUNT_ID, BOOK_ID
     from PUBLIC.BOOKS_READER
   </select>
+  <select id="getResultCountByBookAndAccountId" resultType="INTEGER">
+    SELECT count(*)
+    FROM PUBLIC.BOOKS_READER br
+    WHERE br.book_id = #{bookId, jdbcType=BIGINT} AND br.account_id = #{accountId, jdbcType=BIGINT}
+  </select>
 </mapper>
