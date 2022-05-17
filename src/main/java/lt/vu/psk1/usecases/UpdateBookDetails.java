@@ -14,6 +14,7 @@ import javax.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 import lt.vu.psk1.entities.Book;
+import lt.vu.psk1.interceptors.LoggedInvocation;
 import lt.vu.psk1.persistance.BookDAO;
 
 @ViewScoped
@@ -36,6 +37,7 @@ public class UpdateBookDetails implements Serializable {
         this.book = bookDAO.findOne(bookId);
     }
 
+    @LoggedInvocation
     @Transactional
     public String updateBookTitle() {
         try{

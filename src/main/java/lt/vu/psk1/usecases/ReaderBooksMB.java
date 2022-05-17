@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -19,6 +20,10 @@ import lt.vu.psk1.mybatis.model.Account;
 import lt.vu.psk1.mybatis.dao.AccountMapper;
 import lt.vu.psk1.mybatis.model.Book;
 import lt.vu.psk1.mybatis.model.BooksReader;
+import lt.vu.psk1.qualifiers.Audio;
+import lt.vu.psk1.qualifiers.BookTypeProcessor;
+import lt.vu.psk1.qualifiers.EBook;
+import lt.vu.psk1.qualifiers.EBookType;
 
 @Model
 public class ReaderBooksMB implements Serializable {
@@ -31,6 +36,14 @@ public class ReaderBooksMB implements Serializable {
 
     @Inject
     private BooksReaderMapper booksReaderMapper;
+
+    @Inject
+    @EBook
+    BookTypeProcessor bookTypeProcessor;
+
+    @Inject
+    @Any
+    EBookType eBookType;
 
     @Getter
     @Setter
@@ -50,6 +63,8 @@ public class ReaderBooksMB implements Serializable {
             booksReader.setBookId(bookId);
             booksReader.setAccountId(this.account.getId());
             booksReaderMapper.insert(booksReader);
+            System.out.println(eBookType.bookType());
+            System.out.println(bookTypeProcessor.bookType());
         }
         return "/myBatis/readersAndBooks?faces-redirect=true";
     }
@@ -64,6 +79,8 @@ public class ReaderBooksMB implements Serializable {
         booksReader.setBookId(addedBook.getId());
         booksReader.setAccountId(this.account.getId());
         booksReaderMapper.insert(booksReader);
+        System.out.println(eBookType.bookType());
+        System.out.println(bookTypeProcessor.bookType());
         return "/myBatis/readersAndBooks?faces-redirect=true";
     }
 

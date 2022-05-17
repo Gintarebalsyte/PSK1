@@ -23,7 +23,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NamedQueries({
-        @NamedQuery(name = "Author.findAll", query = "SELECT a FROM Author AS a")
+        @NamedQuery(name = "Author.findAll", query = "SELECT a FROM Author AS a"),
+        @NamedQuery(name = "Author.findByName", query = "SELECT a FROM Author AS a WHERE a.firstName = :firstName AND a.lastName = :lastName")
 })
 @NoArgsConstructor
 @AllArgsConstructor

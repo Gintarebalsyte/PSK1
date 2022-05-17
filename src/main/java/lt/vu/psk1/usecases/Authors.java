@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 import lombok.Getter;
 import lombok.Setter;
+import lt.vu.psk1.decorators.BookDecorator;
 import lt.vu.psk1.entities.Author;
 import lt.vu.psk1.persistance.AuthorDAO;
 
@@ -18,6 +19,9 @@ public class Authors implements Serializable {
 
     @Inject
     private AuthorDAO authorDAO;
+
+    @Inject
+    BookDecorator bookDecorator;
 
     @Getter
     @Setter
@@ -38,6 +42,7 @@ public class Authors implements Serializable {
     @Transactional
     public String createAuthor() {
         this.authorDAO.persist(authorToCreate);
+        System.out.println("Decorator implementation: " + bookDecorator.decoratedInt(2));
         return "index?faces-redirect=true";
     }
 }
