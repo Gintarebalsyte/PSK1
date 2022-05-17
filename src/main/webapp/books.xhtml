@@ -10,9 +10,12 @@
     <h2>Books written by #{authorBooks.author.firstName} #{authorBooks.author.lastName}:</h2>
     <ol>
         <ui:repeat value="#{authorBooks.author.books}" var="book">
-            <li>#{book.title}</li>
+            <li>
+                <h:link value="#{book.title}" outcome="bookDetails?bookId=#{book.id}" />
+            </li>
         </ui:repeat>
     </ol>
+    <h3>To change the title, click on any book from the list, or assign a new book to this author</h3>
     <h:form>
         <h:inputText a:placeholder="title" value="#{authorBooks.bookToCreate.title}" required="true" />
         <h:commandButton value="Assign Book to the Author" action="#{authorBooks.createBook}" >
