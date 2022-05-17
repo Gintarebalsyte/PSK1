@@ -44,6 +44,9 @@ public class Book implements Serializable {
     @Column(name = "TITLE", nullable = false)
     private String title;
 
+    @Column(name = "ISBN_CODE", nullable = false)
+    private String ISBNCode;
+
     @ManyToOne
     @JoinColumn(name="AUTHOR_ID")
     private Author author;

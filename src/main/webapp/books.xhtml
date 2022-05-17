@@ -11,13 +11,29 @@
     <ol>
         <ui:repeat value="#{authorBooks.author.books}" var="book">
             <li>
-                <h:link value="#{book.title}" outcome="bookDetails?bookId=#{book.id}" />
+                <h:link value="#{book.title}, ISBN: #{book.ISBNCode}" outcome="bookDetails?bookId=#{book.id}" />
             </li>
         </ui:repeat>
     </ol>
     <h3>To change the title, click on any book from the list, or assign a new book to this author</h3>
     <h:form>
-        <h:inputText a:placeholder="title" value="#{authorBooks.bookToCreate.title}" required="true" />
+        <h:inputText a:placeholder="title" value="#{authorBooks.bookToCreate.title}"/>
+        <br/>
+        <p>Enter ISBN code:</p>
+        <br/>
+        <h:inputText a:placeholder="ISBN" value="#{authorBooks.bookToCreate.ISBNCode}" />
+        <br/>
+        <p>Or use the code generator</p>
+        <br/>
+        <h:outputText value="#{generateISBNCode.ISBNCodeGenerationStatus}" />
+        <br/>
+        <h:commandButton value="Generate ISBN code" disabled="#{generateISBNCode.ISBNCodeGenerationRunning}" action="#{generateISBNCode.generateISBNCode()}">
+            <f:param name="authorId" value="#{authorBooks.author.id}" />
+        </h:commandButton>
+        <h:commandButton value="Assign ISBN code" disabled="#{generateISBNCode.ISBNCodeGenerationRunning || !generateISBNCode.ISBNCodeGenerated}" action="#{authorBooks.assignISBNCode(generateISBNCode.ISBNCodeGenerationStatus)}">
+            <f:param name="authorId" value="#{authorBooks.author.id}" />
+        </h:commandButton>
+        <br/>
         <h:commandButton value="Assign Book to the Author" action="#{authorBooks.createBook}" >
             <f:param name="authorId" value="#{authorBooks.author.id}" />
         </h:commandButton>

@@ -7,7 +7,7 @@
 >
 <h:head/>
 <h:body>
-    <h2>#{updateBookDetails.book.title}</h2>
+    <h2>#{updateBookDetails.book.title}, ISBN: #{updateBookDetails.book.ISBNCode}</h2>
     <h:form>
         <h:outputText value="Book title: "/>
         <h:inputText a:placeholder="Change title" value="#{updateBookDetails.book.title}" required="true" />

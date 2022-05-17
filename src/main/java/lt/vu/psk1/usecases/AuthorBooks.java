@@ -47,4 +47,8 @@ public class AuthorBooks implements Serializable {
         bookDAO.persist(bookToCreate);
         return "books?faces-redirect=true&authorId=" + this.author.getId();
     }
+
+    public void assignISBNCode(String ISBNCode) {
+        this.bookToCreate.setISBNCode(ISBNCode);
+    }
 }
