@@ -44,7 +44,7 @@ public class Book implements Serializable {
     @Column(name = "TITLE", nullable = false)
     private String title;
 
-    @Column(name = "ISBN_CODE", nullable = false)
+    @Column(name = "ISBN_CODE")
     private String ISBNCode;
 
     @ManyToOne

@@ -1,5 +1,6 @@
 package lt.vu.psk1.entities;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import javax.persistence.Version;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,6 +32,7 @@ import lombok.Setter;
 })
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @Getter
 @Setter
 @Entity
@@ -39,6 +42,9 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Serial
+    private static final long serialVersionUID = -3833941707753425798L;
 
     @Size(max = 20)
     @Column(name = "USERNAME", nullable = false)
@@ -54,21 +60,4 @@ public class Account implements Serializable {
             joinColumns = @JoinColumn(name = "ACCOUNT_ID"),
             inverseJoinColumns = @JoinColumn(name = "BOOK_ID"))
     List<Book> books = new ArrayList<>();
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Account account = (Account) o;
-        return id.equals(account.id) && username.equals(account.username) && password.equals(account.password);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, username, password);
-    }
 }

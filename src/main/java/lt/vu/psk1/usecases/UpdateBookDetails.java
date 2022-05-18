@@ -30,7 +30,6 @@ public class UpdateBookDetails implements Serializable {
 
     @PostConstruct
     private void init() {
-        System.out.println("UpdateBookDetails INIT CALLED");
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         Long bookId = Long.parseLong(requestParameters.get("bookId"));

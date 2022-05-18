@@ -6,14 +6,13 @@ import javax.enterprise.inject.Any;
 import javax.inject.Inject;
 
 @Decorator
-public abstract class DecoratorImpl implements BookDecorator {
+public abstract class DecoratorImpl implements AuthorDecorator {
     @Inject
     @Delegate
     @Any
-    BookDecorator bookDecorator;
+    AuthorDecorator authorDecorator;
 
-    public Integer decoratedInt(Integer integer){
-        System.out.println("Decorator is used");
-        return bookDecorator.decoratedInt(integer) * 10;
+    public String authorDecorator(String message){
+        return authorDecorator.authorDecorator("a message passed to DecoratorImpl: '" + message + "'");
     }
 }

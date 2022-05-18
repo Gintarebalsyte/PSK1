@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -18,9 +17,6 @@ import lt.vu.psk1.entities.Book;
 import lt.vu.psk1.interceptors.LoggedInvocation;
 import lt.vu.psk1.persistance.AuthorDAO;
 import lt.vu.psk1.persistance.BookDAO;
-import lt.vu.psk1.qualifiers.Audio;
-import lt.vu.psk1.qualifiers.BookTypeProcessor;
-import lt.vu.psk1.qualifiers.EBookType;
 
 @Model
 public class AuthorBooks implements Serializable {
@@ -33,10 +29,6 @@ public class AuthorBooks implements Serializable {
 
     @Inject
     private Message message;
-
-    @Inject
-    @Audio
-    BookTypeProcessor bookTypeProcessor;
 
     @Getter
     @Setter
@@ -56,11 +48,19 @@ public class AuthorBooks implements Serializable {
 
     @LoggedInvocation
     @Transactional
+    public String createEBook() {
+        bookToCreate.setAuthor(this.author);
+        bookDAO.persist(bookToCreate);
+        System.out.println(message.writeMessage());
+        return "books?faces-redirect=true&authorId=" + this.author.getId();
+    }
+
+    @LoggedInvocation
+    @Transactional
     public String createBook() {
         bookToCreate.setAuthor(this.author);
         bookDAO.persist(bookToCreate);
-        System.out.println(message.WriteMessage());
-        System.out.println(bookTypeProcessor.bookType());
+        System.out.println(message.writeMessage());
         return "books?faces-redirect=true&authorId=" + this.author.getId();
     }
 

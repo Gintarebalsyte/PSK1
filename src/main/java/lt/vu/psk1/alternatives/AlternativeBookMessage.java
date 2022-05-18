@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @Dependent
 @Alternative
 @NoArgsConstructor
-public class EditedBookMessage implements Message {
+public class AlternativeBookMessage implements Message {
     @Override
-    public String WriteMessage() {
-        return "Book edited";
+    public String writeMessage() {
+        return "Book created (alternative message)";
     }
 }

@@ -7,7 +7,7 @@
         bean-discovery-mode="annotated">
 
   <alternatives>
-<!--    <class>lt.vu.psk1.alternatives.EditedBookMessage</class>-->
+<!--    <class>lt.vu.psk1.alternatives.AlternativeBookMessage</class>-->
   </alternatives>
   <interceptors>
     <class>lt.vu.psk1.interceptors.MethodLogger</class>

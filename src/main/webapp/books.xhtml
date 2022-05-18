@@ -24,7 +24,6 @@
         <h:inputText a:placeholder="ISBN" value="#{authorBooks.bookToCreate.ISBNCode}" />
         <br/>
         <p>Or use the code generator</p>
-        <br/>
         <h:outputText value="#{generateISBNCode.ISBNCodeGenerationStatus}" />
         <br/>
         <h:commandButton value="Generate ISBN code" disabled="#{generateISBNCode.ISBNCodeGenerationRunning}" action="#{generateISBNCode.generateISBNCode()}">
@@ -35,7 +34,7 @@
         </h:commandButton>
         <br/>
 
-        <h:commandButton value="Assign Book to the Author" action="#{authorBooks.createBook}" >
+        <h:commandButton value="Assign Book to the Author" action="#{authorBooks.createBook()}" >
             <f:param name="authorId" value="#{authorBooks.author.id}" />
         </h:commandButton>
     </h:form>

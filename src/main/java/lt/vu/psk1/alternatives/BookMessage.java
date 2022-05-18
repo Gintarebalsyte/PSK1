@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 public class BookMessage implements Message {
 
     @Override
-    public String WriteMessage() {
+    public String writeMessage() {
         return "Book created";
     }
 }
